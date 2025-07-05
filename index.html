@@ -118,7 +118,6 @@
     </div>
 
     <script>
-        // تكوين Firebase (استبدل بالإعدادات الخاصة بك)
         const firebaseConfig = {
             apiKey: 'AIzaSyCQd2QmmDl7dTW9xgurON5uiOp5rTn0S_c',
             appId: '1:832909125676:web:7dcc2e47ad16657cf9c989',
@@ -129,7 +128,6 @@
             measurementId: 'G-XL96X9KSMZ',
         };
 
-        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
@@ -141,7 +139,6 @@
                 return;
             }
             
-            // التحقق من كلمة المرور في قاعدة البيانات
             database.ref('Admin Passwords/' + enteredPassword).once('value').then((snapshot) => {
                 if (snapshot.exists() && snapshot.val() === true) {
                     document.getElementById('passwordSection').classList.add('hidden');
@@ -179,11 +176,9 @@
             let qrHtml = '<div class="qr-grid">';
             let qrPrintHtml = '<div class="qr-grid">';
             
-            // إنشاء جميع QR Codes
             for (let i = 0; i < qrCount; i++) {
                 const qrId = Date.now().toString(36) + Math.random().toString(36).substr(2);
                 
-                // حفظ البيانات في Firebase
                 database.ref('qr_codes/' + qrId).set({
                     points: parseInt(points),
                     isUsed: false,
